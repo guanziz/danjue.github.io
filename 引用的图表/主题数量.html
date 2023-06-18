@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="echarts.js"></script>
+  <script src="theme/vintage.js"></script>
+</head>
+
+<body>
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'), 'vintage');
+
+
+    // 指定图表的配置项和数据
+    var option = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          // Use axis to trigger tooltip
+          type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+      },
+      legend: {},
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'value'
+      },
+      yAxis: {
+        type: 'category',
+        data: ['政治', '家庭伦理', '爱情', '传奇', '战争', '亲情', '插科打诨', '惩奸除恶', '冤情', '其他']
+      },
+      series: [
+        {
+          name: '重要女性角色',
+          type: 'bar',
+          stack: 'total',
+          label: {
+            show: true
+          },
+          emphasis: {
+            focus: 'series'
+          },
+          data: [
+            {
+              value: 52,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 51,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 50,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 35,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 24,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 28,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 21,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 8,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 6,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+            {
+              value: 8,
+              itemStyle: {
+                color: '#841c2d'
+              },
+            },
+          ]
+        },
+        {
+          name: '次要女性角色',
+          type: 'bar',
+          stack: 'total',
+          label: {
+            show: true
+          },
+          emphasis: {
+            focus: 'series'
+          },
+          data:[
+            {
+              value: 31,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 2,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 2,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 6,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 9,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 0,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 0,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 4,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 0,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+            {
+              value: 0,
+              itemStyle: {
+                color: '#ebd7c5'
+              },
+            },
+          ] 
+        },
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</body>
+
+</html>

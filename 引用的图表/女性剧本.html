@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="echarts.js"></script>
+    <script src="theme/vin.js"></script>
+  </head>
+  <body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main" style="width: 600px;height:400px;text-align:center;"></div>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'),'vin');
+
+
+      // 指定图表的配置项和数据
+      var option;
+
+const data = [
+  { value: 9, name: '纯女性角色剧本数量' },
+  { value: 143, name: '纯男性角色剧本数量' },
+  { value: 296, name: '含男女角色剧本数量'  },
+];
+const defaultPalette = [
+  // '#51689b', '#ce5c5c', '#fbc357', '#8fbf8f', '#659d84', '#fb8e6a', '#c77288', '#786090', '#91c4c5', '#6890ba'
+  '#edd8c4',
+  '#c4a999',
+  '#f9c1c0',
+];
+const radius = ['30%', '80%'];
+const pieOption = {
+  series: [
+    {
+      type: 'pie',
+      id: 'distribution',
+      radius: radius,
+      label: {
+        show: true
+      },
+      emphasis:{
+        label:{
+          show:true,
+          formatter: '{d}%'
+        }
+      },
+      universalTransition: true,
+      animationDurationUpdate: 1000,
+      data: data
+    }
+  ]
+};
+const parliamentOption = (function () {
+  let sum = data.reduce(function (sum, cur) {
+    return sum + cur.value;
+  }, 0);
+  let angles = [];
+  let startAngle = -Math.PI / 2;
+  let curAngle = startAngle;
+  data.forEach(function (item) {
+    angles.push(curAngle);
+    curAngle += (item.value / sum) * Math.PI * 2;
+  });
+  angles.push(startAngle + Math.PI * 2);
+  function parliamentLayout(startAngle, endAngle, totalAngle, r0, r1, size) {
+    let rowsCount = Math.ceil((r1 - r0) / size);
+    let points = [];
+    let r = r0;
+    for (let i = 0; i < rowsCount; i++) {
+      // Recalculate size
+      let totalRingSeatsNumber = Math.round((totalAngle * r) / size);
+      let newSize = (totalAngle * r) / totalRingSeatsNumber;
+      for (
+        let k = Math.floor((startAngle * r) / newSize) * newSize;
+        k < Math.floor((endAngle * r) / newSize) * newSize - 1e-6;
+        k += newSize
+      ) {
+        let angle = k / r;
+        let x = Math.cos(angle) * r;
+        let y = Math.sin(angle) * r;
+        points.push([x, y]);
+      }
+      r += size;
+    }
+    return points;
+  }
+  return {
+    series: {
+      type: 'custom',
+      id: 'distribution',
+      data: data,
+      coordinateSystem: undefined,
+      universalTransition: true,
+      animationDurationUpdate: 1000,
+      renderItem: function (params, api) {
+        var idx = params.dataIndex;
+        var viewSize = Math.min(api.getWidth(), api.getHeight());
+        var r0 = ((parseFloat(radius[0]) / 100) * viewSize) / 2;
+        var r1 = ((parseFloat(radius[1]) / 100) * viewSize) / 2;
+        var cx = api.getWidth() * 0.5;
+        var cy = api.getHeight() * 0.5;
+        var size = viewSize / 50;
+        var points = parliamentLayout(
+          angles[idx],
+          angles[idx + 1],
+          Math.PI * 2,
+          r0,
+          r1,
+          size + 3
+        );
+        return {
+          type: 'group',
+          children: points.map(function (pt) {
+            return {
+              type: 'circle',
+              autoBatch: true,
+              shape: {
+                cx: cx + pt[0],
+                cy: cy + pt[1],
+                r: size / 2
+              },
+              style: {
+                fill: defaultPalette[idx % defaultPalette.length]
+              }
+            };
+          })
+        };
+      }
+    }
+  };
+})();
+let currentOption = (option = pieOption);
+setInterval(function () {
+  currentOption = currentOption === pieOption ? parliamentOption : pieOption;
+  myChart.setOption(currentOption);
+}, 2000);
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>

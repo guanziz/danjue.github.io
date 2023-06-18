@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="echarts.js"></script>
+  <script src="theme/vintage.js"></script>
+</head>
+
+<body>
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'), 'vintage');
+
+
+    // 指定图表的配置项和数据
+    var option;
+
+    const data = [
+      [
+        [18, 79, 1200000000, '底层人民 120', '下层人民'],
+        [20, 65, 1690000000, '平民百姓 169', '下层人民'],
+
+      ],
+      [
+        [30, 75, 1860000000, '富贵人家 186', '上层贵族'],
+        [40, 70, 1270000000, '王公贵族 127', '上层贵族']
+      ],
+      [
+        [32, 62, 350000000, '神仙妖怪 35', '其他'],
+      ]
+    ];
+    option = {
+
+      legend: {
+        right: '10%',
+        top: '3%',
+        data: ['下层人民', '上层贵族', '其他']
+      },
+      grid: {
+        left: '8%',
+        top: '10%'
+      },
+      xAxis: {
+        axisLine: {
+          show: false
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          show: false
+        },
+        min: 0,
+        max: 50,
+        splitLine: {
+          lineStyle: {
+            type: 'dashed'
+          },
+          show: false
+        }
+      },
+      yAxis: {
+        axisLine: {
+          show: false
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          show: false
+        },
+        min: 50,
+        max: 90,
+        splitLine: {
+          lineStyle: {
+            type: 'dashed'
+          },
+          show: false
+        },
+        scale: true
+      },
+      series: [
+        {
+          name: '下层人民',
+          data: data[0],
+          type: 'scatter',
+          symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 5e2;
+          },
+          label: {
+            show: true,
+            formatter: function (param) {
+              return param.data[3];
+            },
+            position: 'inside',
+            color: 'rgb(243, 190, 190)',
+            fontSize: 10
+          },
+          emphasis: {
+            focus: 'series',
+            label: {
+              show: true,
+              formatter: function (param) {
+                return param.data[3];
+              },
+              position: 'inside'
+            }
+          },
+          itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(120, 36, 50, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+              {
+                offset: 0,
+                color: 'rgb(166, 69, 69)'
+              },
+              {
+                offset: 1,
+                color: 'rgb(141, 46, 46)'
+              }
+            ])
+          }
+        },
+        {
+          name: '上层贵族',
+          data: data[1],
+          type: 'scatter',
+          symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 5e2;
+          },
+          label: {
+            show: true,
+            formatter: function (param) {
+              return param.data[3];
+            },
+            position: 'inside',
+            color: 'rgb(166, 69, 69)',
+            fontSize: 10
+          },
+          emphasis: {
+            focus: 'series',
+            label: {
+              show: true,
+              formatter: function (param) {
+                return param.data[3];
+              },
+              position: 'inside'
+            }
+          },
+          itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(227, 170, 170, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+              {
+                offset: 0,
+                color: 'rgb(243, 190, 190)'
+              },
+              {
+                offset: 1,
+                color: 'rgb(250, 220, 220)'
+              }
+            ])
+          }
+        },
+        {
+          name: '其他',
+          data: data[2],
+          type: 'scatter',
+          symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 5e2;
+          },
+          label: {
+            show: true,
+            formatter: function (param) {
+              return param.data[3];
+            },
+            position: 'inside',
+            color: 'rgb(166, 69, 69)',
+            fontSize: 10
+          },
+          emphasis: {
+            focus: 'series',
+            label: {
+              show: true,
+              formatter: function (param) {
+                return param.data[3];
+              },
+              position: 'inside'
+            }
+          },
+          itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(170, 141, 124, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+              {
+                offset: 0,
+                color: 'rgb(195,168,152)'
+              },
+              {
+                offset: 1,
+                color: 'rgb(219,197,185)'
+              }
+            ])
+          }
+        }
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="echarts.js"></script>
+  <script src="theme/vin.js"></script>
+</head>
+
+<body>
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'), 'vin');
+
+
+    // 指定图表的配置项和数据
+    var option = {
+      tooltip: {},
+      animationDuration: 1500,
+      animationEasingUpdate: 'quinticInOut',
+      series: [
+        {
+          name: 'Les Miserables',
+          type: 'graph',
+          layout: 'none',
+          lineStyle: {
+          color: 'gradient',
+          curveness: 0.5
+        },
+          data: [
+            {
+              name: '政治'
+            },
+            {
+              name: '家庭伦理'
+            },
+            {
+              name: '爱情'
+            },
+            {
+              name: '传奇'
+            },
+            {
+              name: '战争'
+            },
+            {
+              name: '亲情'
+            },
+            {
+              name: '插科打诨'
+            },
+            {
+              name: '惩奸除恶'
+            },
+            {
+              name: '冤情'
+            },
+            {
+              name: '其他'
+            }
+          ],
+          links: [
+          {
+            source: '政治',
+            target: '政治',
+            value: 70
+          },
+          {
+            source: '政治',
+            target: '家庭伦理',
+            value: 2
+          },
+          {
+            source: '政治',
+            target: '爱情',
+            value: 2
+          },
+          {
+            source: '政治',
+            target: '传奇',
+            value: 2
+          },
+          {
+            source: '政治',
+            target: '战争',
+            value: 4
+          },
+          {
+            source: '政治',
+            target: '亲情',
+            value: 3
+          },
+          {
+            source: '家庭伦理',
+            target: '政治',
+            value: 2
+          },
+          {
+            source: '家庭伦理',
+            target: '家庭伦理',
+            value: 44
+          },
+          {
+            source: '家庭伦理',
+            target: '爱情',
+            value: 1
+          },
+          {
+            source: '家庭伦理',
+            target: '传奇',
+            value: 3
+          },
+          {
+            source: '家庭伦理',
+            target: '战争',
+            value: 2
+          },
+          {
+            source: '家庭伦理',
+            target: '冤情',
+            value: 1
+          },
+          {
+            source: '爱情',
+            target: '政治',
+            value: 2
+          },
+          {
+            source: '爱情',
+            target: '家庭伦理',
+            value: 1
+          },
+          {
+            source: '爱情',
+            target: '爱情',
+            value: 41
+          },
+          {
+            source: '爱情',
+            target: '传奇',
+            value: 5
+          },
+          {
+            source: '爱情',
+            target: '战争',
+            value: 2
+          },
+          {
+            source: '爱情',
+            target: '亲情',
+            value: 2
+          },
+          {
+            source: '爱情',
+            target: '插科打诨',
+            value: 1
+          },
+          {
+            source: '传奇',
+            target: '政治',
+            value: 2
+          },
+          {
+            source: '传奇',
+            target: '家庭伦理',
+            value: 3
+          },
+          {
+            source: '传奇',
+            target: '爱情',
+            value: 5
+          },
+          {
+            source: '传奇',
+            target: '传奇',
+            value: 28
+          },
+          {
+            source: '传奇',
+            target: '亲情',
+            value: 4
+          },
+          {
+            source: '战争',
+            target: '政治',
+            value: 4
+          },
+          {
+            source: '战争',
+            target: '家庭伦理',
+            value: 2
+          },
+          {
+            source: '战争',
+            target: '爱情',
+            value: 2
+          },
+          {
+            source: '战争',
+            target: '战争',
+            value: 25
+          },
+          {
+            source: '亲情',
+            target: '政治',
+            value: 3
+          },
+          {
+            source: '亲情',
+            target: '爱情',
+            value: 2
+          },
+          {
+            source: '亲情',
+            target: '传奇',
+            value: 4
+          },
+          {
+            source: '亲情',
+            target: '亲情',
+            value: 19
+          },
+          {
+            source: '插科打诨',
+            target: '爱情',
+            value: 1
+          },
+          {
+            source: '插科打诨',
+            target: '插科打诨',
+            value: 20
+          },
+          {
+            source: '惩奸除恶',
+            target: '惩奸除恶',
+            value: 12
+          },
+          {
+            source: '其他',
+            target: '其他',
+            value: 8
+          },
+          {
+            source: '冤情',
+            target: '家庭伦理',
+            value: 1
+          },
+          {
+            source: '冤情',
+            target: '冤情',
+            value: 6
+          },
+        ],
+          categories: graph.categories,
+          roam: true,
+          label: {
+            position: 'right',
+            formatter: '{b}'
+          },
+          lineStyle: {
+            color: 'source',
+            curveness: 0.3
+          },
+          emphasis: {
+            focus: 'adjacency',
+            lineStyle: {
+              width: 10
+            }
+          }
+        }
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</body>
+
+</html>

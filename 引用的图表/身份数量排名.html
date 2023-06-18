@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="echarts.js"></script>
+  <script src="theme/vintage.js"></script>
+</head>
+
+<body>
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'), 'vintage');
+
+
+    // 指定图表的配置项和数据
+    var option = {
+      xAxis: {
+        type: 'category',
+        data: ['家庭妇女', '闺阁少女', '丫鬟女婢', '女将女侠', '女政治家']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          data: [
+            {
+              value: 324,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#cf6767' },
+                  { offset: 0.5, color: '#8d2e2e' },
+                  { offset: 1, color: '#8d2e2e' }
+                ])
+              },
+            },
+            {
+              value: 108,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#cf6767' },
+                  { offset: 0.5, color: '#8d2e2e' },
+                  { offset: 1, color: '#8d2e2e' }
+                ])
+              },
+            },
+            {
+              value: 62,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#cf6767' },
+                  { offset: 0.5, color: '#8d2e2e' },
+                  { offset: 1, color: '#8d2e2e' }
+                ])
+              },
+            },
+            {
+              value: 43,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#cf6767' },
+                  { offset: 0.5, color: '#8d2e2e' },
+                  { offset: 1, color: '#8d2e2e' }
+                ])
+              },
+            },
+            {
+              value: 10,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: '#cf6767' },
+                  { offset: 0.5, color: '#8d2e2e' },
+                  { offset: 1, color: '#8d2e2e' }
+                ])
+              },
+            },
+          ],
+          type: 'bar',
+          label:{
+            show:true,
+            position:'top'
+          }
+        },
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</body>
+
+</html>

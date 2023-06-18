@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="echarts.js"></script>
+  <script src="theme/vin.js"></script>
+</head>
+
+<body>
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'), 'vin');
+
+
+    // 指定图表的配置项和数据
+    var option = {
+      series: {
+        type: 'sankey',
+        layout: 'none',
+        emphasis: {
+          focus: 'adjacency',
+          edgeLabel: {
+          show: true,
+          color:'#000000'
+        }
+        },
+        lineStyle: {
+          color: 'gradient',
+          curveness: 0.5
+        },
+        data: [
+          {
+            name: '政治'
+          },
+          {
+            name: '家庭伦理'
+          },
+          {
+            name: '爱情'
+          },
+          {
+            name: '传奇'
+          },
+          {
+            name: '战争'
+          },
+          {
+            name: '亲情'
+          },
+          {
+            name: '插科打诨'
+          },
+          {
+            name: '惩奸除恶'
+          },
+          {
+            name: '冤情'
+          },
+          {
+            name: '其他'
+          },
+          {
+            name: '悲喜剧'
+          },
+          {
+            name: '悲剧'
+          },
+          {
+            name: '喜剧'
+          }
+        ],
+        links: [
+          {
+            source: '政治',
+            target: '悲剧',
+            value: 16
+          },
+          {
+            source: '家庭伦理',
+            target: '悲剧',
+            value: 5
+          },
+          {
+            source: '爱情',
+            target: '悲剧',
+            value: 13
+          },
+          {
+            source: '传奇',
+            target: '悲剧',
+            value: 6
+          },
+          {
+            source: '战争',
+            target: '悲剧',
+            value: 5
+          },
+          {
+            source: '亲情',
+            target: '悲剧',
+            value: 4
+          },
+          {
+            source: '冤情',
+            target: '悲剧',
+            value: 3
+          },
+          {
+            source: '其他',
+            target: '悲剧',
+            value: 2
+          },
+          {
+            source: '政治',
+            target: '喜剧',
+            value: 5
+          },
+          {
+            source: '家庭伦理',
+            target: '喜剧',
+            value: 5
+          },
+          {
+            source: '爱情',
+            target: '喜剧',
+            value: 12
+          },
+          {
+            source: '传奇',
+            target: '喜剧',
+            value: 4
+          },
+          {
+            source: '战争',
+            target: '喜剧',
+            value: 2
+          },
+          {
+            source: '亲情',
+            target: '喜剧',
+            value: 2
+          },
+          {
+            source: '插科打诨',
+            target: '喜剧',
+            value: 19
+          },
+          {
+            source: '惩奸除恶',
+            target: '喜剧',
+            value: 2
+          },
+          {
+            source: '其他',
+            target: '喜剧',
+            value: 1
+          },
+          {
+            source: '政治',
+            target: '悲喜剧',
+            value: 62
+          },
+          {
+            source: '家庭伦理',
+            target: '悲喜剧',
+            value: 42
+          },
+          {
+            source: '爱情',
+            target: '悲喜剧',
+            value: 17
+          },
+          {
+            source: '传奇',
+            target: '悲喜剧',
+            value: 30
+          },
+          {
+            source: '战争',
+            target: '悲喜剧',
+            value: 19
+          },
+          {
+            source: '亲情',
+            target: '悲喜剧',
+            value: 20
+          },
+          {
+            source: '插科打诨',
+            target: '悲喜剧',
+            value: 2
+          },
+          {
+            source: '惩奸除恶',
+            target: '悲喜剧',
+            value: 10
+          },
+          {
+            source: '冤情',
+            target: '悲喜剧',
+            value: 3
+          },
+          {
+            source: '其他',
+            target: '悲喜剧',
+            value: 5
+          },
+        ],
+        draggable: true
+      }
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</body>
+
+</html>
